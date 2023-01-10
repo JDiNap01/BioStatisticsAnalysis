@@ -11,7 +11,7 @@ execute:
 
 ## *Palmer Penguins*
 
-This document analysizes different populations of penguins and their relative weights and sizes.
+This document analysizes different populations of penguins and their relative weights and sizes. This is my first notebook.
 
 ## Running Code
 
