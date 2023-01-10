@@ -1,0 +1,27 @@
+---
+title: "Palmer Penguins Initial Analysis"
+author: "Joshua DiNapoli"
+format: html
+editor: visual
+execute:
+  keep-md: true
+---
+
+## *Palmer Penguins*
+
+This document analysizes different populations of penguins and their relative weights and sizes.
+
+## Running Code
+
+```{r}
+#Load the tidyverse
+library(tidyverse)
+
+#Read the penguins_samp1 data file from github
+penguins <- read_csv("https://raw.githubusercontent.com/mcduryea/Intro-to-Bioinformatics/main/data/penguins_samp1.csv")
+
+#See the first six rows of the data we've read in to our notebook
+penguins %>% head()
+```
+
+The different tables are organized by species, the island the species was found, its bill length and depth, flipper length and depth, the body mass, year of discovery, and sex.
