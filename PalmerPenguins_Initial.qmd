@@ -13,15 +13,21 @@ This document analysizes different populations of penguins and their relative we
 
 ## Running Code
 
+Here we will load the tidyverse package and paenguins dataset
+
 ```{r}
 #Load the tidyverse
 library(tidyverse)
+library(kableExtra)
 
 #Read the penguins_samp1 data file from github
 penguins <- read_csv("https://raw.githubusercontent.com/mcduryea/Intro-to-Bioinformatics/main/data/penguins_samp1.csv")
 
 #See the first six rows of the data we've read in to our notebook
-penguins %>% head()
+penguins %>%
+  head() %>%
+  kable() %>%
+  kable_styling(c("striped","hover"))
 ```
 
 The different tables are organized by species, the island the species was found, its bill length and depth, flipper length and depth, the body mass, year of discovery, and sex.
