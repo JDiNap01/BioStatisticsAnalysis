@@ -23,11 +23,216 @@ library(kableExtra)
 #Read the penguins_samp1 data file from github
 penguins <- read_csv("https://raw.githubusercontent.com/mcduryea/Intro-to-Bioinformatics/main/data/penguins_samp1.csv")
 
-#See the first six rows of the data we've read in to our notebook
+#See the first six rows of the data we've read in to our notebook. Clean up tables with kable extra.
 penguins %>%
   head() %>%
   kable() %>%
   kable_styling(c("striped","hover"))
+  
+
 ```
 
 The different tables are organized by species, the island the species was found, its bill length and depth, flipper length and depth, the body mass, year of discovery, and sex.
+
+## About our data
+
+The data we are working with is a dataset on Penguins, which features the variables: species, island, bill length/depth, flipper length, body mass, sex, and year.
+
+-   What is the average flipper length by species?
+
+-   Are there more male or female penguins on each island?
+
+-   What is the mean body mass per island, species, sex?
+
+-   What is the ratio of bill length to bill depth for a penguin? What is the overall average of this metric? Does it change by species, sex, or island?
+
+-   Does average body mass change by year?
+
+## Data Manipulation Tools and Strategies
+
+We can look at individual columns in in a data set or subsets of columns in a dataset. If we are only interested in flipper length and species, we can `select()` those columns
+
+/
+
+```{r}
+penguins %>%
+  select(species, body_mass_g)
+
+```
+
+if we want to `filter()` and only show certain rows, we can do that too.
+
+```{r}
+penguins%>%
+  filter(species == "Chinstrap")
+
+#we can see also do both
+penguins%>%
+  filter((body_mass_g == 6000) | (island == "Togersen"))
+```
+
+## Answering Our Questions
+
+Most of our questions involve summarizing data, and perhaps summarizing our groups. We can summarize data using the `summarize()` function and group data using `group_by()`.
+
+Let's find the average flipper length.
+
+```{r}
+penguins%>%
+  summarize(avg_flipper_length = mean(flipper_length_mm))
+            
+penguins%>%
+  filter(species == "Gentoo") %>%
+  summarize(avg_flipper_length = mean(flipper_length_mm))
+  
+#Grouped Average
+penguins%>%
+  group_by(species) %>%
+  summarize(avg_flipper_length = mean(flipper_length_mm))
+```
+
+```{r}
+#Are there more male or female penguins
+penguins%>%
+  count(sex)
+
+#What is the mean body mass per island
+penguins%>%
+  group_by(island)%>%
+  summarize(avg_body_mass_g = mean(body_mass_g))
+
+#What is the mean body mass per species
+penguins%>%
+  group_by(species)%>%
+  summarize(avg_body_mass_g = mean(body_mass_g))
+
+#What is the mean body mass per sex
+penguins%>%
+  group_by(sex)%>%
+  summarize(avg_body_mass_g = mean(body_mass_g))
+
+  
+  
+```
+
+We can `mutate()` to add new columns to our data set
+
+```{r}
+#What is the bill length to depth ratio
+penguins%>%
+  group_by(species)%>%
+  mutate(bill_ltd_ratio = bill_length_mm / bill_depth_mm)%>%
+  summarize(avg_bill_ltd_ratio = mean(bill_ltd_ratio),
+            median_bill_ltd_ratio  = median(bill_ltd_ratio))
+#What is the 
+penguins%>%
+  group_by(year)%>%
+  summarize(mean_body_mass = mean(body_mass_g))
+```
+
+## Data Visualization with `ggplot()`
+
+There are entire courses on data visualization. We'll give you just a taste of it here.
+
+**One Categorical Variable:** We can visualize a categorical variable with a barplot
+
+```{r}
+penguins%>%
+  ggplot() +
+  geom_bar(mapping = aes(x = species))
+  labs(title = "counts of Penguin Species", x = "Species", y = "Count")
+```
+
+-   This plot shows that the gentoo species are by far the most numerous and the chinstrap are numbered the lowest.
+
+-   The + sign in the ggplot is meant to add the specific data visualization method (barplot, histogram, etc.)
+
+```{r}
+penguins%>%
+  ggplot() +
+  geom_bar(mapping = aes(x = sex)) 
+  labs(title = "Counts of Penguins by Sex", x = "Island", y= "Count")
+```
+
+Histograms will show the shape of the data
+
+Boxplots are great at finding outliers and where your data "lives".
+
+One categorical variable: Barplot
+
+Comparing two numerical variables: scatterplot
+
+Two categorical variables: barplots with fill color
+
+One numerical one categorical: side by side boxplots. Overlayed histograms. "faceting"
+
+**One Numerical Variable**: Distribution of Bill Lengths (Histograms or Boxplots)
+
+```{r}
+penguins%>%
+  ggplot()+
+  geom_histogram(mapping = aes(x=bill_length_mm),
+                 color = "white",
+                 fill = "blue") +
+  labs(title = "Distribution of Bill Lengths",
+       x= "Bill Length(mm)", y="Count")
+```
+
+**Distribution of Flipper Length**
+
+```{r}
+penguins%>%
+  ggplot() +
+  geom_histogram(mapping = aes(x=flipper_length_mm))
+  labs(title = "Distribution of Penguin Flipper Length", x = "Flipper Length", y = "Count")
+```
+
+```{r}
+penguins%>%
+  ggplot()+
+  geom_histogram(aes(x=flipper_length_mm),
+                bins = 15,
+                fill = "forestgreen",
+                color = "black") +
+  labs(title="Distribution of Flipper Length", 
+       y="", x = "Flipper Length (mm)",
+       subtitle ="Mean in Black, Median in Purple") +
+  geom_vline(aes(xintercept = mean(flipper_length_mm)), lwd = 2, lty = "dashed") +
+  geom_vline(aes(xintercept = median(flipper_length_mm)), fill ="black",
+             color="red", lwd = 2, lty = "dashed")
+```
+
+-   The data is skewed left since the mean is lower than the median
+
+**Distribution of Species**
+
+```{r}
+penguins%>%
+  ggplot()+
+  geom_bar(mapping = aes(x=island, fill = species)) +
+  labs(title = "Distribution of Species",
+       x= "Island",
+       y= "Species")
+```
+
+**One Numerical and One Categorical**: Bill Depth by Species
+
+```{r}
+penguins%>%
+  ggplot() +
+  geom_boxplot(mapping = aes(x=bill_depth_mm, y = species)) +
+  labs(title = "Distribution of Bill Depth by species", x = "Bill Depth (mm)", y = "Species")
+
+```
+
+**Two Numerical Variable**: Bill Length vs Bill Depth (scatterplot)
+
+```{r}
+penguins%>%
+  ggplot() +
+  geom_point(aes(x = bill_length_mm, y = bill_depth_mm, color = species))+
+  geom_smooth(aes(x = bill_length_mm, y = bill_depth_mm, color = species), method = "lm")+
+  labs(title = "Comparison of Bill Length vs Bill Depth", x = "Bill Length (mm)", y= "Bill Depth(mm)")
+```
+
+Within each species, the longer the beak, the deeper the beak.
