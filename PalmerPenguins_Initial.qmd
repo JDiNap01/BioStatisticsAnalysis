@@ -236,3 +236,74 @@ penguins%>%
 ```
 
 Within each species, the longer the beak, the deeper the beak.
+
+**Does the average bill length meet or exceed 45 mm?**
+
+```{r}
+penguins%>%
+  summarize(avg_bill_length = mean(bill_length_mm))
+```
+
+-   Hypothesis Tests
+
+-   Confidence Intervals
+
+-   Can we run an hypothesis test to determine if the avg bill length is greater than 45 mm?
+
+-   The data wrote the test, we cant use the data to take the test. Its biased and confirmatifon bias. Data cannot inform the questions we ask and answer the questions
+
+## Revisting Intro Stats
+
+-   Assume Central Limit Theroem: The sampling distribution tends towards a normal distribution as sample sizes get larger.
+
+-   Sampling Distribution: If we took lots of samples of 44 penguins and computed the sample mean bill length of each. Take the average bill lengths of a sample lots of time creating a histogram. We never build a sampling distribution (funding. We usually just take one sample and assume a normal through inference). Assumes that the more sample means we add, the closer we get to central limit theorem.
+
+-   Normal distribution has bell curve with expected samples and unsuaul samples on tails.
+
+-   Hypothesis Tests: Our assumption is either wrong (due to unsuaul samples or tails) or in the expected range. If the p-value is below the level of significance.
+
+## Simulation Based Methods
+
+```{r}
+n_samps <- 1000
+sample_means <- rep(NA, n_samps)
+for(i in 1:n_samps){
+  my_samp <- penguins %>%
+    sample_n(nrow(penguins), replace = TRUE)
+  sample_means[i] <- my_samp %>%
+    summarize(mean = mean(flipper_length_mm, na.rm = TRUE)) %>%
+    pull(mean)
+}
+
+ggplot() +
+  geom_histogram(aes(x = sample_means)) +
+  labs(title = "Distribution of Bootstrap Samples",
+       x = "Sample Mean Flipper Lengths (mm)",
+       y = "")
+
+```
+
+```{r}
+num_samps <- 1000
+bootstrapped_mean_lengths <- rep(NA, num_samps)
+
+for(i in 1:num_samps){
+  my_samp <- rnorm(nrow(penguins), 200, 5)
+  bootstrapped_mean_lengths[i] <- mean(my_samp)
+  }
+
+my_mean_flipper_length <- penguins %>%
+  summarize(mean = mean(flipper_length_mm, na.rm = TRUE)) %>%
+  pull(mean)
+
+ggplot() + 
+  geom_histogram(aes(x = bootstrapped_mean_lengths)) +
+  geom_vline(aes(xintercept = my_mean_flipper_length), 
+             color = "blue",
+             lwd = 1.5,
+             linetype = "dashed") +
+  labs(title = "Bootstrapped Hypothesis Test",
+       subtitle = "Mean Flipper Length",
+       x = "Bootstrapped Mean Flipper Lengths (~N(200, 5))",
+       Y = "")
+```

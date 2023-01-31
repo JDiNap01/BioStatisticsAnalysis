@@ -1,0 +1,45 @@
+---
+title: "DogBreedTraits"
+format: html
+editor: visual
+---
+
+## Loading Library
+
+```{r}
+breed_traits <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-02-01/breed_traits.csv')
+trait_description <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-02-01/trait_description.csv')
+breed_rank_all <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-02-01/breed_rank.csv')
+
+```
+
+```{r}
+install.packages("tidymodels")
+library(tidymodels)
+library(tidyverse)
+
+my_data_splits <- initial_split(breed_traits, prop = 0.5)
+
+exploratory_data <- training(my_data_splits)
+test_data <- testing(my_data_splits)
+```
+
+```{r}
+install.packages("janitor")
+names(breed_traits) <- janitor::make_clean_names(names(breed_traits))
+```
+
+```{r fig.height=6}
+breed_traits %>%
+  mutate(is_terrier=str_detect("Terrier"))%>%
+  mutate(is_terrier=str_detect("Terrier"))%>%
+  filter(str_detect(breed,"Terrier"))%>%
+  ggplot()+
+  geom_point(aes(x= good_with_young_children, y = breed))
+
+ 
+```
+
+```{r}
+breed_traits
+```
