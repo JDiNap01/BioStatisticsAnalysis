@@ -31,11 +31,15 @@ names(breed_traits) <- janitor::make_clean_names(names(breed_traits))
 
 ```{r fig.height=6}
 breed_traits %>%
-  mutate(is_terrier=str_detect("Terrier"))%>%
-  mutate(is_terrier=str_detect("Terrier"))%>%
-  filter(str_detect(breed,"Terrier"))%>%
+  mutate(is_terrier=str_detect(breed, "Terrier"))%>%
+  mutate(is_beagle=str_detect(breed, "Beagle"))%>%
+  mutate(is_corgi=str_detect(breed, "Corgis"))%>%
+  mutate(is_chihuaha=str_detect(breed, "Chihuaha"))%>%
+  mutate(is_mine=is_terrier+is_beagle+is_corgi+is_chihuaha)%>%
+  filter(is_mine>0)%>%
   ggplot()+
   geom_point(aes(x= good_with_young_children, y = breed))
+
 
  
 ```
