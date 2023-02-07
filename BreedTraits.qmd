@@ -29,7 +29,7 @@ install.packages("janitor")
 names(breed_traits) <- janitor::make_clean_names(names(breed_traits))
 ```
 
-```{r fig.height=6}
+```{r fig.height=6,eval=FALSE}
 breed_traits %>%
   mutate(is_terrier=str_detect(breed, "Terrier"))%>%
   mutate(is_beagle=str_detect(breed, "Beagle"))%>%
@@ -46,4 +46,15 @@ breed_traits %>%
 
 ```{r}
 breed_traits
+```
+
+Defining a list of large, medium, small dog breeds
+
+```{r}
+breed_traits%>%
+  large=c("German Shepherd","Rottweilers","Great Danes","Doberman Pinschers","Bermese Mountain Dogs","Cane Corso","Collie","Mastiffs","Belgian Malinois","Weimaraner",)
+  medium=c("Retrievers (Labrador)","Golden Retrievers","Bulldogs","Beagles","Pointers","Australian Shepherds","Boxers","Siberian Huskies","Spaniels (English Springer","Brittany","Border Collie","Vizsla","Basset Hounds",)
+  small=c("French Bulldogs","Poodles","Dachshunds","Pembroke Welsh Corgis","Yorkshire Terriers","Cavalier King Charles Spaniels","Miniature Schnauzers","Shih Tzu","Boston Terriers","Pomerians","Havanese","Cane Corso","Shetland Sheepdogs","Pug","Cocker Spaniel","Miniature American Shepherd","Chihuahua","Maltese",)
+data%>%
+  mutate(size = ifelse(breed%in%large,"large",ifelse(breed%in%medium,"medium","small")))
 ```
