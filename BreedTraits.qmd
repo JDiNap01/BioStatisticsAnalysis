@@ -4,6 +4,16 @@ format: html
 editor: visual
 ---
 
+# Breed Traits Analysis
+
+## Abstract
+
+The data set examined different traits of over a 195 dog breeds. I wanted to find out if there was a correlation between a dog's breeds and their affection towards children. Originally I asked if terrier breeds had a higher affection with young children compared to other breeds such as chihuahuas and beagles. However due to the high number of terrier breeds, the data become crowded and hard to read in a plot. The correlation between the size of a dog and its relationship with a children was examined.
+
+## Introduction
+
+The American Kennel Club lists over 300 identified dog breeds. Over the years, these breeds have been analyzed for the purpose of competitions, role in fields such as sporting, forensics, therapy, and their fitness compared to specific human lifestyles. The dataset used for this experiment focused on variables relating to this last factor. For example some of the main variables included "Affectionate with family or energy level." The set included over 195 breeds, each ranked from 1 to 5 for the variables. The personality of dog breeds tends to generalized in relation to its size. Anecdotes of chihuahas being rowdy or beagles being warm and aloof grow to dominate perceptions of the small and medium sized breeds. For that reason, this dataset examines if there is a relationship between a dogs size and their quality of young children. Each dog breed was assigned to one of three variables - small, medium, large depending on how they were categorized by the American Kennel Club. From there a plot was created to observe the average rank of each size with young children.
+
 ## Loading Library
 
 ```{r}
@@ -14,7 +24,7 @@ breed_rank_all <- readr::read_csv('https://raw.githubusercontent.com/rfordatasci
 ```
 
 ```{r}
-install.packages("tidymodels")
+#install.packages("tidymodels")
 library(tidymodels)
 library(tidyverse)
 
@@ -25,9 +35,11 @@ test_data <- testing(my_data_splits)
 ```
 
 ```{r}
-install.packages("janitor")
+#install.packages("janitor")
 names(breed_traits) <- janitor::make_clean_names(names(breed_traits))
 ```
+
+What I tried in this dataset
 
 ```{r fig.height=6,eval=FALSE}
 breed_traits %>%
@@ -44,6 +56,8 @@ breed_traits %>%
  
 ```
 
+Heres how it failed and inspired my next dataset
+
 ```{r}
 breed_traits
 ```
@@ -52,9 +66,9 @@ Defining a list of large, medium, small dog breeds
 
 ```{r}
 breed_traits%>%
-  large=c("German Shepherd","Rottweilers","Great Danes","Doberman Pinschers","Bermese Mountain Dogs","Cane Corso","Collie","Mastiffs","Belgian Malinois","Weimaraner","Newfoundland","Rhodesian Ridgeback","Retrievers (Chesapeake Bay)","Bloodhound","Akita","Airedale Terrier","Alaskan Malamute","Giant Schnauzer","Old English Sheepdog","Saint Bernard","Great Pyrenees","Bullmastiff","Dogue De Bordeaux","Irish Wolfhound", "Irish Settler","Greater Swiss Mountain Dog","Anatolian Shepherd Dog","Dogo Argentino","Bouvier des Flandres","Leonberger","Neapolitan Mastiff","Borsoi","Godron Settler","Tibetan Mastiff","Beauceron","Afghan Hound","Boerboel","Black Russian Terrier","Black and Tan Coonhound","Greyhound","Retrievers (Curly-Coated)","Scottish Deerhound","Otterhound","Kuvasz","Komondorok","Sloughis")
-  medium=c("Retrievers (Labrador)","Golden Retrievers","Bulldogs","Beagles","Pointers","Australian Shepherds","Boxers","Siberian Huskies","Spaniels (English Springer","Brittany","Border Collie","Vizsla","Basset Hounds","Shiba Inu","English Cocker Spaniel", "Portuguese Water Dog","Pointers (German Wirehaired)","Chinese Shar-Pei","Wirehaired Pointing Griffons","Bull Terriers","Soft Coated Wheaten Terriers","Whippets","Dalmatians","Australian Cattle Dogs","Samoyed","Retrievers (Nova Scotia Duck Tolling)","Staffordshire Bull Terrier","American Staffordshire Terrier","Chow Chow","Boykin Spaniel","Lagotti Romangnoli","Norwegian Elkhounds","Standard Schnauzer","Keeshonde","Tibetan Terrier","Settler (English)","Retrievers (Flat-Coated)","Belgian Tervuren","Spinoni Italiani","Welsh Springer Spaniel","Xoloitzcuintli","Manchester Terrier","Kerry Blue Terrier","Spaniel(Clumber)","Bluetick Coonhound","German Pinscher","American Eskimo Dog","Irish Terrier","Bearded Collie","Pointer","Belgian Sheepdog", "Bedlington Terrier","Pulik","Saluki","Barbet","Redbone Coonhound","Spanish Water Dog","Briard","Berger Picard","Entelbucher Mountain Dog","Treeing Walker Coonhound","Icelandic Sheepdog","Wirehaired Vizsla","Pumik", "Portuguese Podengo","American Water Spaniel","Field Spaniel","Nederlandse Kooikerhondje","Finnish Lapphund","Plott Hound","Norwegian Buhund","Irish Red and White Setter","Norwegian Lundehund", "Ibizan Hound", "Spaniels(Sussex)","Bergamasco Sheepdog","Spaniels (Irish Water)","Polish Lowland Sheepdog","Cirneco dell'Etna","Pharaoh hound", "Canaan Dog","American English Coonhound","Chinook","Finnish Spitz","Harrier","American Foxhound","Azawakh","English Foxhound")
-  small=c("French Bulldogs","Poodles","Dachshunds","Pembroke Welsh Corgis","Yorkshire Terriers","Cavalier King Charles Spaniels","Miniature Schnauzers","Shih Tzu","Boston Terriers","Pomerians","Havanese","Cane Corso","Shetland Sheepdogs","Pug","Cocker Spaniel","Miniature American Shepherd","Chihuahua","Maltese","West Highland White Terrier","Bichon Frise","Cardigan Welsh Corgis","Italian Greyhound","Scottish Terrier","Papillon","Brussels Griffon","Russell Terrier", "Cairn Terrier","Miniature Pinscher","Lhasa Apso","Chinese Crested","Coton de Tulear","Rat Terrier","Basenji","Pekingese","Boder Terrier","Wire Fox Terrier","Miniature Bull Terrier","Silky Terrier","Norwich Terrier","Japanese Chin","Welsh Terrier","Toy Fox Terrier","Schipperke","Russell Terrier","American Hairless Terrier","Norfolk Terrier","Australian Terrier","Lakeland Terrier","English Toy Spaniel","Tibetan Spaniel","Smooth Fox Terrier","Swedish Vallhund","Sealyham Terrier","Lowchen","Affenpinscher","Petit Basset Griffon Vendeen", "Glen of Imaal Terrier","Dandie Dinmont Terrier","Pyrenean Shepherd", "Skye Terrier","Petit Basset Griffon Vendeen","Cesky Terrier",)
+  large<-c("German Shepherd","Rottweilers","Great Danes","Doberman Pinschers","Bermese Mountain Dogs","Cane Corso","Collie","Mastiffs","Belgian Malinois","Weimaraner","Newfoundland","Rhodesian Ridgeback","Retrievers (Chesapeake Bay)","Bloodhound","Akita","Airedale Terrier","Alaskan Malamute","Giant Schnauzer","Old English Sheepdog","Saint Bernard","Great Pyrenees","Bullmastiff","Dogue De Bordeaux","Irish Wolfhound", "Irish Settler","Greater Swiss Mountain Dog","Anatolian Shepherd Dog","Dogo Argentino","Bouvier des Flandres","Leonberger","Neapolitan Mastiff","Borsoi","Godron Settler","Tibetan Mastiff","Beauceron","Afghan Hound","Boerboel","Black Russian Terrier","Black and Tan Coonhound","Greyhound","Retrievers (Curly-Coated)","Scottish Deerhound","Otterhound","Kuvasz","Komondorok","Sloughis")
+  medium<-c("Retrievers (Labrador)","Golden Retrievers","Bulldogs","Beagles","Pointers","Australian Shepherds","Boxers","Siberian Huskies","Spaniels (English Springer","Brittany","Border Collie","Vizsla","Basset Hounds","Shiba Inu","English Cocker Spaniel", "Portuguese Water Dog","Pointers (German Wirehaired)","Chinese Shar-Pei","Wirehaired Pointing Griffons","Bull Terriers","Soft Coated Wheaten Terriers","Whippets","Dalmatians","Australian Cattle Dogs","Samoyed","Retrievers (Nova Scotia Duck Tolling)","Staffordshire Bull Terrier","American Staffordshire Terrier","Chow Chow","Boykin Spaniel","Lagotti Romangnoli","Norwegian Elkhounds","Standard Schnauzer","Keeshonde","Tibetan Terrier","Settler (English)","Retrievers (Flat-Coated)","Belgian Tervuren","Spinoni Italiani","Welsh Springer Spaniel","Xoloitzcuintli","Manchester Terrier","Kerry Blue Terrier","Spaniel(Clumber)","Bluetick Coonhound","German Pinscher","American Eskimo Dog","Irish Terrier","Bearded Collie","Pointer","Belgian Sheepdog", "Bedlington Terrier","Pulik","Saluki","Barbet","Redbone Coonhound","Spanish Water Dog","Briard","Berger Picard","Entelbucher Mountain Dog","Treeing Walker Coonhound","Icelandic Sheepdog","Wirehaired Vizsla","Pumik", "Portuguese Podengo","American Water Spaniel","Field Spaniel","Nederlandse Kooikerhondje","Finnish Lapphund","Plott Hound","Norwegian Buhund","Irish Red and White Setter","Norwegian Lundehund", "Ibizan Hound", "Spaniels(Sussex)","Bergamasco Sheepdog","Spaniels (Irish Water)","Polish Lowland Sheepdog","Cirneco dell'Etna","Pharaoh hound", "Canaan Dog","American English Coonhound","Chinook","Finnish Spitz","Harrier","American Foxhound","Azawakh","English Foxhound")
+  small<-("French Bulldogs","Poodles","Dachshunds","Pembroke Welsh Corgis","Yorkshire Terriers","Cavalier King Charles Spaniels","Miniature Schnauzers","Shih Tzu","Boston Terriers","Pomerians","Havanese","Cane Corso","Shetland Sheepdogs","Pug","Cocker Spaniel","Miniature American Shepherd","Chihuahua","Maltese","West Highland White Terrier","Bichon Frise","Cardigan Welsh Corgis","Italian Greyhound","Scottish Terrier","Papillon","Brussels Griffon","Russell Terrier", "Cairn Terrier","Miniature Pinscher","Lhasa Apso","Chinese Crested","Coton de Tulear","Rat Terrier","Basenji","Pekingese","Boder Terrier","Wire Fox Terrier","Miniature Bull Terrier","Silky Terrier","Norwich Terrier","Japanese Chin","Welsh Terrier","Toy Fox Terrier","Schipperke","Russell Terrier","American Hairless Terrier","Norfolk Terrier","Australian Terrier","Lakeland Terrier","English Toy Spaniel","Tibetan Spaniel","Smooth Fox Terrier","Swedish Vallhund","Sealyham Terrier","Lowchen","Affenpinscher","Petit Basset Griffon Vendeen", "Glen of Imaal Terrier","Dandie Dinmont Terrier","Pyrenean Shepherd", "Skye Terrier","Petit Basset Griffon Vendeen","Cesky Terrier",)
 data%>%
   mutate(size = ifelse(breed%in%large,"large",ifelse(breed%in%medium,"medium","small")))%>%
   ggplot()+
