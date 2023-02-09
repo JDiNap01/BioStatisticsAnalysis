@@ -14,7 +14,9 @@ The data set examined different traits of over a 195 dog breeds. I wanted to fin
 
 The American Kennel Club lists over 300 identified dog breeds. Over the years, these breeds have been analyzed for the purpose of competitions, role in fields such as sporting, forensics, therapy, and their fitness compared to specific human lifestyles. The dataset used for this experiment focused on variables relating to this last factor. For example some of the main variables included "Affectionate with family or energy level." The set included over 195 breeds, each ranked from 1 to 5 for the variables. The personality of dog breeds tends to generalized in relation to its size. Anecdotes of chihuahas being rowdy or beagles being warm and aloof grow to dominate perceptions of the small and medium sized breeds. For that reason, this dataset examines if there is a relationship between a dogs size and their quality of young children. Each dog breed was assigned to one of three variables - small, medium, large depending on how they were categorized by the American Kennel Club. From there a plot was created to observe the average rank of each size with young children.
 
-## Loading Library
+## Loading Library and Tidyverse
+
+To begin my analysis, I had to grab the dataset from a CSV file on GitHub and store it in the variable breed_traits, trait_description, breed_rank_all. For this project, we will be focusing on the dataset breed_traits.
 
 ```{r}
 breed_traits <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-02-01/breed_traits.csv')
@@ -22,6 +24,8 @@ trait_description <- readr::read_csv('https://raw.githubusercontent.com/rfordata
 breed_rank_all <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-02-01/breed_rank.csv')
 
 ```
+
+For the sake of using pipes and other functions in this script, I loaded tidyverse. I then split my data into exploratory data and test_data. The purpose of the splitting data is so that we can create inferences about our total population (the exploratory data set) from the test data. However as I realized I wanted to combine all the dog breeds into three sets, it become unnecessary to develop inferences for this project.
 
 ```{r}
 #install.packages("tidymodels")
@@ -34,12 +38,16 @@ exploratory_data <- training(my_data_splits)
 test_data <- testing(my_data_splits)
 ```
 
+The janitor package allows the names of the dog breeds to be read in an easier way for R studio.
+
 ```{r}
 #install.packages("janitor")
 names(breed_traits) <- janitor::make_clean_names(names(breed_traits))
 ```
 
-What I tried in this dataset
+## Conducting a Hypothesis
+
+The code block below reflected my first hypothesis. I wanted to see if broad categories of dogs (i.e Terriers, Chihuahas, Beagles) could be compared in how they treated young children. After piping the data from breed_traits, I created a new variable for terriers, corgis, chihuahas, and beagles using the string detect function. After all categories were created, I combined them into one variable called is_mine. The next line ran the entire dataset for any of the breeds defined under is_mine. If they did not find the breed, they would filter it out. As a result, it would only plot the breeds I wanted.
 
 ```{r fig.height=6,eval=FALSE}
 breed_traits %>%
@@ -56,22 +64,22 @@ breed_traits %>%
  
 ```
 
-Heres how it failed and inspired my next dataset
+The dataset failed because of the sheer number of terrier breeds compared to the other categories. Consequently, the data became unreadable with several observations represting the different terrier breeds overshadowing the other breeds.
+
+## A New Hypothesis
+
+With the original hypothesis failing, I went back to the drawing board. I hypothesized that another way to organize breeds. Due to prevailing assumptions of a dog's personality based on its size, I hypothesized that large dogs would be the best around children. My reasoning being that despite their size scaring some children, compared to smaller dogs they may seem more aloof and amiable. To test this theory, I created three new variables: large, small, and medium. Then came the tedious task of organizing all 195 breeds into these categories. Since the breeds themselves arent categorized by the dataset, I needed to define if a breed was small, large or medium according to standard weights set by the American Kennel Club. Afterwards, I used the mutate function so that the data could run through all three sizes: large, small, medium. The point of this function is so that the data can organize each of the breeds into one function called size. This x value will then be compared to our y value (good with children) in a jitter plot. I ran into some problems constructing this dataset including using pipes when organizing the dataset (which was not necessary) and using the wrong plot (point plot vs jitter or box plot).
 
 ```{r}
 breed_traits
-```
-
-Defining a list of large, medium, small dog breeds
-
-```{r}
-breed_traits%>%
   large<-c("German Shepherd","Rottweilers","Great Danes","Doberman Pinschers","Bermese Mountain Dogs","Cane Corso","Collie","Mastiffs","Belgian Malinois","Weimaraner","Newfoundland","Rhodesian Ridgeback","Retrievers (Chesapeake Bay)","Bloodhound","Akita","Airedale Terrier","Alaskan Malamute","Giant Schnauzer","Old English Sheepdog","Saint Bernard","Great Pyrenees","Bullmastiff","Dogue De Bordeaux","Irish Wolfhound", "Irish Settler","Greater Swiss Mountain Dog","Anatolian Shepherd Dog","Dogo Argentino","Bouvier des Flandres","Leonberger","Neapolitan Mastiff","Borsoi","Godron Settler","Tibetan Mastiff","Beauceron","Afghan Hound","Boerboel","Black Russian Terrier","Black and Tan Coonhound","Greyhound","Retrievers (Curly-Coated)","Scottish Deerhound","Otterhound","Kuvasz","Komondorok","Sloughis")
   medium<-c("Retrievers (Labrador)","Golden Retrievers","Bulldogs","Beagles","Pointers","Australian Shepherds","Boxers","Siberian Huskies","Spaniels (English Springer","Brittany","Border Collie","Vizsla","Basset Hounds","Shiba Inu","English Cocker Spaniel", "Portuguese Water Dog","Pointers (German Wirehaired)","Chinese Shar-Pei","Wirehaired Pointing Griffons","Bull Terriers","Soft Coated Wheaten Terriers","Whippets","Dalmatians","Australian Cattle Dogs","Samoyed","Retrievers (Nova Scotia Duck Tolling)","Staffordshire Bull Terrier","American Staffordshire Terrier","Chow Chow","Boykin Spaniel","Lagotti Romangnoli","Norwegian Elkhounds","Standard Schnauzer","Keeshonde","Tibetan Terrier","Settler (English)","Retrievers (Flat-Coated)","Belgian Tervuren","Spinoni Italiani","Welsh Springer Spaniel","Xoloitzcuintli","Manchester Terrier","Kerry Blue Terrier","Spaniel(Clumber)","Bluetick Coonhound","German Pinscher","American Eskimo Dog","Irish Terrier","Bearded Collie","Pointer","Belgian Sheepdog", "Bedlington Terrier","Pulik","Saluki","Barbet","Redbone Coonhound","Spanish Water Dog","Briard","Berger Picard","Entelbucher Mountain Dog","Treeing Walker Coonhound","Icelandic Sheepdog","Wirehaired Vizsla","Pumik", "Portuguese Podengo","American Water Spaniel","Field Spaniel","Nederlandse Kooikerhondje","Finnish Lapphund","Plott Hound","Norwegian Buhund","Irish Red and White Setter","Norwegian Lundehund", "Ibizan Hound", "Spaniels(Sussex)","Bergamasco Sheepdog","Spaniels (Irish Water)","Polish Lowland Sheepdog","Cirneco dell'Etna","Pharaoh hound", "Canaan Dog","American English Coonhound","Chinook","Finnish Spitz","Harrier","American Foxhound","Azawakh","English Foxhound")
-  small<-("French Bulldogs","Poodles","Dachshunds","Pembroke Welsh Corgis","Yorkshire Terriers","Cavalier King Charles Spaniels","Miniature Schnauzers","Shih Tzu","Boston Terriers","Pomerians","Havanese","Cane Corso","Shetland Sheepdogs","Pug","Cocker Spaniel","Miniature American Shepherd","Chihuahua","Maltese","West Highland White Terrier","Bichon Frise","Cardigan Welsh Corgis","Italian Greyhound","Scottish Terrier","Papillon","Brussels Griffon","Russell Terrier", "Cairn Terrier","Miniature Pinscher","Lhasa Apso","Chinese Crested","Coton de Tulear","Rat Terrier","Basenji","Pekingese","Boder Terrier","Wire Fox Terrier","Miniature Bull Terrier","Silky Terrier","Norwich Terrier","Japanese Chin","Welsh Terrier","Toy Fox Terrier","Schipperke","Russell Terrier","American Hairless Terrier","Norfolk Terrier","Australian Terrier","Lakeland Terrier","English Toy Spaniel","Tibetan Spaniel","Smooth Fox Terrier","Swedish Vallhund","Sealyham Terrier","Lowchen","Affenpinscher","Petit Basset Griffon Vendeen", "Glen of Imaal Terrier","Dandie Dinmont Terrier","Pyrenean Shepherd", "Skye Terrier","Petit Basset Griffon Vendeen","Cesky Terrier",)
-data%>%
+  small<-c("French Bulldogs","Poodles","Dachshunds","Pembroke Welsh Corgis","Yorkshire Terriers","Cavalier King Charles Spaniels","Miniature Schnauzers","Shih Tzu","Boston Terriers","Pomerians","Havanese","Cane Corso","Shetland Sheepdogs","Pug","Cocker Spaniel","Miniature American Shepherd","Chihuahua","Maltese","West Highland White Terrier","Bichon Frise","Cardigan Welsh Corgis","Italian Greyhound","Scottish Terrier","Papillon","Brussels Griffon","Russell Terrier", "Cairn Terrier","Miniature Pinscher","Lhasa Apso","Chinese Crested","Coton de Tulear","Rat Terrier","Basenji","Pekingese","Boder Terrier","Wire Fox Terrier","Miniature Bull Terrier","Silky Terrier","Norwich Terrier","Japanese Chin","Welsh Terrier","Toy Fox Terrier","Schipperke","Russell Terrier","American Hairless Terrier","Norfolk Terrier","Australian Terrier","Lakeland Terrier","English Toy Spaniel","Tibetan Spaniel","Smooth Fox Terrier","Swedish Vallhund","Sealyham Terrier","Lowchen","Affenpinscher","Petit Basset Griffon Vendeen", "Glen of Imaal Terrier","Dandie Dinmont Terrier","Pyrenean Shepherd", "Skye Terrier","Petit Basset Griffon Vendeen","Cesky Terrier")
+breed_traits%>%
   mutate(size = ifelse(breed%in%large,"large",ifelse(breed%in%medium,"medium","small")))%>%
+  count(size)
+
   ggplot()+
-  geom_point(aes(x= good_with_young_children, y = size))
+  geom_jitter(aes(x= good_with_young_children, y = size))
 
 ```
