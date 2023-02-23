@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>DogBreedTraits</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="BreedTraits_files/libs/clipboard/clipboard.min.js"></script>
+<script src="BreedTraits_files/libs/quarto-html/quarto.js"></script>
+<script src="BreedTraits_files/libs/quarto-html/popper.min.js"></script>
+<script src="BreedTraits_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="BreedTraits_files/libs/quarto-html/anchor.min.js"></script>
+<link href="BreedTraits_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="BreedTraits_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="BreedTraits_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="BreedTraits_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="BreedTraits_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">DogBreedTraits</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="breed-traits-analysis" class="level1">
+<h1>Breed Traits Analysis</h1>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>The data set examined different traits of over a 195 dog breeds. I wanted to find out if there was a correlation between a dog’s breeds and their affection towards children. Originally I asked if terrier breeds had a higher affection with young children compared to other breeds such as chihuahuas and beagles. However due to the high number of terrier breeds, the data become crowded and hard to read in a plot. The correlation between the size of a dog and its relationship with a children was examined.</p>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>The American Kennel Club lists over 300 identified dog breeds. Over the years, these breeds have been analyzed for the purpose of competitions, role in fields such as sporting, forensics, therapy, and their fitness compared to specific human lifestyles. The dataset used for this experiment focused on variables relating to this last factor. For example some of the main variables included “Affectionate with family or energy level.” The set included over 195 breeds, each ranked from 1 to 5 for the variables. The personality of dog breeds tends to generalized in relation to its size. Anecdotes of chihuahas being rowdy or beagles being warm and aloof grow to dominate perceptions of the small and medium sized breeds. For that reason, this dataset examines if there is a relationship between a dogs size and their quality of young children. Each dog breed was assigned to one of three variables - small, medium, large depending on how they were categorized by the American Kennel Club. From there a plot was created to observe the average rank of each size with young children.</p>
+</section>
+<section id="loading-library-and-tidyverse" class="level2">
+<h2 class="anchored" data-anchor-id="loading-library-and-tidyverse">Loading Library and Tidyverse</h2>
+<p>For the sake of using pipes and other functions in this script, I loaded tidyverse. I then split my data into exploratory data and test_data. The purpose of the splitting data is so that we can create inferences about our total population (the exploratory data set) from the test data. However as I realized I wanted to combine all the dog breeds into three sets, it become unnecessary to develop inferences for this project</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("tidymodels")</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages ────────────────────────────────────── tidymodels 1.0.0 ──</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ broom        1.0.2      ✔ recipes      1.0.4 
+✔ dials        1.1.0      ✔ rsample      1.1.1 
+✔ dplyr        1.0.10     ✔ tibble       3.1.8 
+✔ ggplot2      3.4.0      ✔ tidyr        1.2.1 
+✔ infer        1.0.4      ✔ tune         1.0.1 
+✔ modeldata    1.1.0      ✔ workflows    1.1.2 
+✔ parsnip      1.0.3      ✔ workflowsets 1.0.0 
+✔ purrr        1.0.0      ✔ yardstick    1.1.0 </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Conflicts ───────────────────────────────────────── tidymodels_conflicts() ──
+✖ purrr::discard() masks scales::discard()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+✖ recipes::step()  masks stats::step()
+• Search for functions across packages at https://www.tidymodels.org/find/</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages
+───────────────────────────────────────
+tidyverse 1.3.2 ──</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ readr   2.1.3     ✔ forcats 0.5.2
+✔ stringr 1.5.0     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ readr::col_factor() masks scales::col_factor()
+✖ purrr::discard()    masks scales::discard()
+✖ dplyr::filter()     masks stats::filter()
+✖ stringr::fixed()    masks recipes::fixed()
+✖ dplyr::lag()        masks stats::lag()
+✖ readr::spec()       masks yardstick::spec()</code></pre>
+</div>
+</div>
+<p>To begin my analysis, I had to grab the dataset from a CSV file on GitHub and store it in the variable breed_traits, trait_description, breed_rank_all. For this project, we will be focusing on the dataset breed_traits.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>breed_traits <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"C:/Users/Joshua/Downloads/breeds.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 195 Columns: 17
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (3): Breed, Coat Type, Coat Length
+dbl (14): Affectionate With Family, Good With Young Children, Good With Othe...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>trait_description <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-02-01/trait_description.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 16 Columns: 4
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (4): Trait, Trait_1, Trait_5, Description
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>breed_rank_all <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-02-01/breed_rank.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 195 Columns: 11
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (3): Breed, links, Image
+dbl (8): 2013 Rank, 2014 Rank, 2015 Rank, 2016 Rank, 2017 Rank, 2018 Rank, 2...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>my_data_splits <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(breed_traits, <span class="at">prop =</span> <span class="fl">0.5</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>exploratory_data <span class="ot">&lt;-</span> <span class="fu">training</span>(my_data_splits)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> <span class="fu">testing</span>(my_data_splits)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For the sake of using pipes and other functions in this script, I loaded tidyverse. I then split my data into exploratory data and test_data. The purpose of the splitting data is so that we can create inferences about our total population (the exploratory data set) from the test data. However as I realized I wanted to combine all the dog breeds into three sets, it become unnecessary to develop inferences for this project</p>
+<p>The janitor package allows the names of the dog breeds to be read in an easier way for R studio.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("janitor")</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(breed_traits) <span class="ot">&lt;-</span> janitor<span class="sc">::</span><span class="fu">make_clean_names</span>(<span class="fu">names</span>(breed_traits))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="conducting-a-hypothesis" class="level2">
+<h2 class="anchored" data-anchor-id="conducting-a-hypothesis">Conducting a Hypothesis</h2>
+<p>The code block below reflected my first hypothesis. I wanted to see if broad categories of dogs (i.e Terriers, Chihuahas, Beagles) could be compared in how they treated young children. After piping the data from breed_traits, I created a new variable for terriers, corgis, chihuahas, and beagles using the string detect function. After all categories were created, I combined them into one variable called is_mine. The next line ran the entire dataset for any of the breeds defined under is_mine. If they did not find the breed, they would filter it out. As a result, it would only plot the breeds I wanted.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>breed_traits <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">is_terrier=</span><span class="fu">str_detect</span>(breed, <span class="st">"Terrier"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">is_beagle=</span><span class="fu">str_detect</span>(breed, <span class="st">"Beagle"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">is_corgi=</span><span class="fu">str_detect</span>(breed, <span class="st">"Corgis"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">is_chihuaha=</span><span class="fu">str_detect</span>(breed, <span class="st">"Chihuaha"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">is_mine=</span>is_terrier<span class="sc">+</span>is_beagle<span class="sc">+</span>is_corgi<span class="sc">+</span>is_chihuaha)<span class="sc">%&gt;%</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(is_mine<span class="sc">&gt;</span><span class="dv">0</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span> good_with_young_children, <span class="at">y =</span> breed))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The dataset failed because of the sheer number of terrier breeds compared to the other categories. Consequently, the data became unreadable with several observations represting the different terrier breeds overshadowing the other breeds.</p>
+</section>
+<section id="a-new-hypothesis" class="level2">
+<h2 class="anchored" data-anchor-id="a-new-hypothesis">A New Hypothesis</h2>
+<p>With the original hypothesis failing, I went back to the drawing board. I hypothesized that another way to organize breeds. Due to prevailing assumptions of a dog’s personality based on its size, I hypothesized that large dogs would be the best around children. My reasoning being that despite their size scaring some children, compared to smaller dogs they may seem more aloof and amiable. To test this theory, I created three new variables: large, small, and medium. Then came the tedious task of organizing all 195 breeds into these categories. Since the breeds themselves arent categorized by the dataset, I needed to define if a breed was small, large or medium according to standard weights set by the American Kennel Club. Afterwards, I used the mutate function so that the data could run through all three sizes: large, small, medium. The point of this function is so that the data can organize each of the breeds into one function called size. This x value will then be compared to our y value (good with children) in a jitter plot. I ran into some problems constructing this dataset including using pipes when organizing the dataset (which was not necessary) and using the wrong plot (point plot vs jitter or box plot).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>breed_traits</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 195 × 17
+   breed affec…¹ good_…² good_…³ shedd…⁴ coat_…⁵ drool…⁶ coat_…⁷ coat_…⁸ openn…⁹
+   &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;
+ 1 Retr…       5       5       5       4       2       2 Double  Short         5
+ 2 Fren…       5       5       4       3       1       3 Smooth  Short         5
+ 3 Germ…       5       5       3       4       2       2 Double  Medium        3
+ 4 Retr…       5       5       5       4       2       2 Double  Medium        5
+ 5 Bull…       4       3       3       3       3       3 Smooth  Short         4
+ 6 Pood…       5       5       3       1       4       1 Curly   Long          5
+ 7 Beag…       3       5       5       3       2       1 Smooth  Short         3
+ 8 Rott…       5       3       3       3       1       3 Smooth  Short         3
+ 9 Poin…       5       5       4       3       2       2 Smooth  Short         4
+10 Dach…       5       3       4       2       2       2 Smooth  Short         4
+# … with 185 more rows, 7 more variables: playfulness_level &lt;dbl&gt;,
+#   watchdog_protective_nature &lt;dbl&gt;, adaptability_level &lt;dbl&gt;,
+#   trainability_level &lt;dbl&gt;, energy_level &lt;dbl&gt;, barking_level &lt;dbl&gt;,
+#   mental_stimulation_needs &lt;dbl&gt;, and abbreviated variable names
+#   ¹​affectionate_with_family, ²​good_with_young_children,
+#   ³​good_with_other_dogs, ⁴​shedding_level, ⁵​coat_grooming_frequency,
+#   ⁶​drooling_level, ⁷​coat_type, ⁸​coat_length, ⁹​openness_to_strangers</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>  large<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"German Shepherd Dogs"</span>,<span class="st">"Rottweilers"</span>,<span class="st">"Great Danes"</span>,<span class="st">"Doberman Pinschers"</span>,<span class="st">"Bermese Mountain Dogs"</span>,<span class="st">"Cane Corso"</span>,<span class="st">"Collie"</span>,<span class="st">"Mastiffs"</span>,<span class="st">"Belgian Malinois"</span>,<span class="st">"Weimaraners"</span>,<span class="st">"Newfoundlands"</span>,<span class="st">"Rhodesian Ridgebacks"</span>,<span class="st">"Retrievers (Chesapeake Bay)"</span>,<span class="st">"Bloodhounds"</span>,<span class="st">"Akitas"</span>,<span class="st">"Airedale Terriers"</span>,<span class="st">"Alaskan Malamute"</span>,<span class="st">"Giant Schnauzers"</span>,<span class="st">"Old English Sheepdogs"</span>,<span class="st">"St. Bernards"</span>,<span class="st">"Great Pyrenees"</span>,<span class="st">"Bullmastiff"</span>,<span class="st">"Dogues de Bordeaux"</span>,<span class="st">"Irish Wolfhounds"</span>, <span class="st">"Setters (Irish)"</span>,<span class="st">"Greater Swiss Mountain Dogs"</span>,<span class="st">"Anatolian Shepherd Dog"</span>,<span class="st">"Dogo Argentinos"</span>,<span class="st">"Bouviers des Flandres"</span>,<span class="st">"Leonbergers"</span>,<span class="st">"Neapolitan Mastiffs"</span>,<span class="st">"Borsoi"</span>,<span class="st">"Godron Settler"</span>,<span class="st">"Tibetan Mastiffs"</span>,<span class="st">"Beaucerons"</span>,<span class="st">"Afghan Hounds"</span>,<span class="st">"Boerboels"</span>,<span class="st">"Black Russian Terriers"</span>,<span class="st">"Black and Tan Coonhounds"</span>,<span class="st">"Greyhounds"</span>,<span class="st">"Retrievers (Curly-Coated)"</span>,<span class="st">"Scottish Deerhounds"</span>,<span class="st">"Otterhounds"</span>,<span class="st">"Kuvaszok"</span>,<span class="st">"Komondorok"</span>,<span class="st">"Sloughis"</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  medium<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"Retrievers (Labrador)"</span>,<span class="st">"Retrievers (Golden)"</span>,<span class="st">"Bulldogs"</span>,<span class="st">"Beagles"</span>,<span class="st">"Pointers (German Shorthaired)"</span>,<span class="st">"Australian Shepherds"</span>,<span class="st">"Boxers"</span>,<span class="st">"Siberian Huskies"</span>,<span class="st">"Spaniels (English Springer)"</span>,<span class="st">"Brittanys"</span>,<span class="st">"Border Collies"</span>,<span class="st">"Vizslas"</span>,<span class="st">"Basset Hounds"</span>,<span class="st">"Shiba Inu"</span>,<span class="st">"Spaniels (English Cocker)"</span>,<span class="st">"Portuguese Water Dogs"</span>,<span class="st">"Pointers (German Wirehaired)"</span>,<span class="st">"Chinese Shar-Pei"</span>,<span class="st">"Wirehaired Pointing Griffons"</span>,<span class="st">"Bull Terriers"</span>,<span class="st">"Soft Coated Wheaten Terriers"</span>,<span class="st">"Whippets"</span>,<span class="st">"Dalmatians"</span>,<span class="st">"Australian Cattle Dogs"</span>,<span class="st">"Samoyed"</span>,<span class="st">"Retrievers (Nova Scotia Duck Tolling)"</span>,<span class="st">"Staffordshire Bull Terriers"</span>,<span class="st">"American Staffordshire Terriers"</span>,<span class="st">"Chow Chow"</span>,<span class="st">"Boykin Spaniel"</span>,<span class="st">"Lagotti Romagnoli"</span>,<span class="st">"Norwegian Elkhounds"</span>,<span class="st">"Standard Schnauzers"</span>,<span class="st">"Keeshonden"</span>,<span class="st">"Tibetan Terriers"</span>,<span class="st">"Settler (English)"</span>,<span class="st">"Retrievers (Flat-Coated)"</span>,<span class="st">"Belgian Tervuren"</span>,<span class="st">"Spinoni Italiani"</span>,<span class="st">"Welsh Springer Spaniel"</span>,<span class="st">"Xoloitzcuintli"</span>,<span class="st">"Manchester Terriers"</span>,<span class="st">"Kerry Blue Terriers"</span>,<span class="st">"Spaniel(Clumber)"</span>,<span class="st">"Bluetick Coonhounds"</span>,<span class="st">"German Pinschers"</span>,<span class="st">"American Eskimo Dogs"</span>,<span class="st">"Irish Terriers"</span>,<span class="st">"Bearded Collie"</span>,<span class="st">"Pointer"</span>,<span class="st">"Belgian Sheepdogs"</span>, <span class="st">"Bedlington Terriers"</span>,<span class="st">"Pulik"</span>,<span class="st">"Salukis"</span>,<span class="st">"Barbets"</span>,<span class="st">"Redbone Coonhounds"</span>,<span class="st">"Spanish Water Dogs"</span>,<span class="st">"Briards"</span>,<span class="st">"Berger Picards"</span>,<span class="st">"Entlebucher Mountain Dogs"</span>,<span class="st">"Treeing Walker Coonhounds"</span>,<span class="st">"Icelandic Sheepdogs"</span>,<span class="st">"Wirehaired Vizslas"</span>,<span class="st">"Pumik"</span>, <span class="st">"Portuguese Podengo Pequenos"</span>,<span class="st">"American Water Spaniel"</span>,<span class="st">"Field Spaniel"</span>,<span class="st">"Nederlandse Kooikerhondjes"</span>,<span class="st">"Finnish Lapphunds"</span>,<span class="st">"Plott Hounds"</span>,<span class="st">"Norwegian Buhunds"</span>,<span class="st">"Irish Red and White Setter"</span>,<span class="st">"Norwegian Lundehunds"</span>, <span class="st">"Ibizan Hounds"</span>, <span class="st">"Spaniels(Sussex)"</span>,<span class="st">"Bergamasco Sheepdogs"</span>,<span class="st">"Spaniels (Irish Water)"</span>,<span class="st">"Polish Lowland Sheepdogs"</span>,<span class="st">"Cirnechi dell'Etna"</span>,<span class="st">"Pharaoh Hounds"</span>, <span class="st">"Canaan Dogs"</span>,<span class="st">"American English Coonhounds"</span>,<span class="st">"Chinooks"</span>,<span class="st">"Finnish Spitz"</span>,<span class="st">"Harriers"</span>,<span class="st">"American Foxhounds"</span>,<span class="st">"Azawakhs"</span>,<span class="st">"English Foxhounds"</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  small<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"French Bulldogs"</span>,<span class="st">"Poodles"</span>,<span class="st">"Dachshunds"</span>,<span class="st">"Pembroke Welsh Corgis"</span>,<span class="st">"Yorkshire Terriers"</span>,<span class="st">"Cavalier King Charles Spaniels"</span>,<span class="st">"Miniature Schnauzers"</span>,<span class="st">"Shih Tzu"</span>,<span class="st">"Boston Terriers"</span>,<span class="st">"Pomeranians"</span>,<span class="st">"Havanese"</span>,<span class="st">"Cane Corso"</span>,<span class="st">"Shetland Sheepdogs"</span>,<span class="st">"Pugs"</span>,<span class="st">"Spaniels (Cocker)"</span>,<span class="st">"Miniature American Shepherd"</span>,<span class="st">"Chihuahuas"</span>,<span class="st">"Maltese"</span>,<span class="st">"West Highland White Terriers"</span>,<span class="st">"Bichons Frises"</span>,<span class="st">"Cardigan Welsh Corgis"</span>,<span class="st">"Italian Greyhounds"</span>,<span class="st">"Scottish Terriers"</span>,<span class="st">"Papillons"</span>,<span class="st">"Brussels Griffons"</span>,<span class="st">"Russell Terrier"</span>, <span class="st">"Cairn Terriers"</span>,<span class="st">"Miniature Pinschers"</span>,<span class="st">"Lhasa Apsos"</span>,<span class="st">"Chinese Crested"</span>,<span class="st">"Coton de Tulear"</span>,<span class="st">"Rat Terrier"</span>,<span class="st">"Basenjis"</span>,<span class="st">"Pekingese"</span>,<span class="st">"Boder Terrier"</span>,<span class="st">"Fox Terriers (Wire)"</span>,<span class="st">"Miniature Bull Terriers"</span>,<span class="st">"Silky Terriers"</span>,<span class="st">"Norwich Terriers"</span>,<span class="st">"Japanese Chin"</span>,<span class="st">"Welsh Terriers"</span>,<span class="st">"Toy Fox Terriers"</span>,<span class="st">"Schipperkes"</span>,<span class="st">"Russell Terriers"</span>,<span class="st">"American Hairless Terrier"</span>,<span class="st">"Norfolk Terriers"</span>,<span class="st">"Australian Terriers"</span>,<span class="st">"Lakeland Terriers"</span>,<span class="st">"English Toy Spaniels"</span>,<span class="st">"Tibetan Spaniels"</span>,<span class="st">"Smooth Fox Terrier"</span>,<span class="st">"Swedish Vallhunds"</span>,<span class="st">"Sealyham Terriers"</span>,<span class="st">"Lowchen"</span>,<span class="st">"Affenpinschers"</span>,<span class="st">"Petits Bassets Griffons Vendeens"</span>, <span class="st">"Glen of Imaal Terriers"</span>,<span class="st">"Dandie Dinmont Terriers"</span>,<span class="st">"Pyrenean Shepherds"</span>, <span class="st">"Skye Terriers"</span>,<span class="st">"Petit Basset Griffon Vendeen"</span>,<span class="st">"Cesky Terriers"</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>breed_traits<span class="sc">%&gt;%</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">size =</span> <span class="fu">ifelse</span>(breed<span class="sc">%in%</span>large,<span class="st">"large"</span>,<span class="fu">ifelse</span>(breed<span class="sc">%in%</span>medium,<span class="st">"medium"</span>,<span class="st">"small"</span>)))<span class="sc">%&gt;%</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x=</span> good_with_young_children, <span class="at">y =</span> size))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="BreedTraits_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>My analysis ran into some issues collecting each of the breeds as variables and categorizing them into the right size category. The command that was meant to organize each of the breeds into sizes was written as.</p>
+<p>““”</p>
+<p>mutate(size = ifelse(breed%in%large,“large”,ifelse(breed%in%medium,“medium”,“small”)))</p>
+<p>““”</p>
+<p>In this line of code, R will create a variable known as size and assign them into string categories such as “small”, “medium”, “large” that will be displayed on the jitter plot as part of the y axis. The mutate command works using the function ifelse. Ifelse will search the list of strings to see if they were listed under the variable of large and if not medium. If a breed in the dataset is not detected under either variable, it will default to being classified as small when organized in size. Due to this assumption I wouldnt have to print out a breed name if it was small (however I did so to ensure I collected every breed). It also meant that any string that did not match with a breed in the dataset would default to the small category. Problems arose from this function due to typos (including lack of pluralization or misnaming) I had printed out for the strings. As a result the initial jitter plot was skewed towards small and counted up to 142 out of the 195 breeds as small. However once I fixed this typo, I was able to create a coherent dataset.</p>
+<p>The jitter plot displayed coherent but somewhat underwhelming results. The data visualized how most dog breeds regardless of size scored either 3 or 5 when dealing with young children. Interestingly there is only one small or medium breed that lists below a score of 3 (there were no large breeds listed below but they also had a smaller sample size) and very few listed with a score of 4. The analysis showed that size was not a correlating factor in how well a dog performed with young children and most tended to score either average or excellent with very few observations below or between those scores.</p>
+<p>Due to the discrete categorical values used to score how well the dogs did with children, the data does much to be desired. There is a question of how the data was conducted and who scored the dogs. The data on this scale (examining 195 breeds) is also limited by the number of observations. Only 1 dog for each breed is listed essentially making the data anecdotal.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

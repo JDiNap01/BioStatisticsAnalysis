@@ -16,27 +16,27 @@ The American Kennel Club lists over 300 identified dog breeds. Over the years, t
 
 ## Loading Library and Tidyverse
 
-To begin my analysis, I had to grab the dataset from a CSV file on GitHub and store it in the variable breed_traits, trait_description, breed_rank_all. For this project, we will be focusing on the dataset breed_traits.
-
-```{r}
-breed_traits <- read_csv("C:/Users/Joshua/Downloads/breeds (1).csv")
-trait_description <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-02-01/trait_description.csv')
-breed_rank_all <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-02-01/breed_rank.csv')
-
-```
-
-For the sake of using pipes and other functions in this script, I loaded tidyverse. I then split my data into exploratory data and test_data. The purpose of the splitting data is so that we can create inferences about our total population (the exploratory data set) from the test data. However as I realized I wanted to combine all the dog breeds into three sets, it become unnecessary to develop inferences for this project.
+For the sake of using pipes and other functions in this script, I loaded tidyverse. I then split my data into exploratory data and test_data. The purpose of the splitting data is so that we can create inferences about our total population (the exploratory data set) from the test data. However as I realized I wanted to combine all the dog breeds into three sets, it become unnecessary to develop inferences for this project
 
 ```{r}
 #install.packages("tidymodels")
 library(tidymodels)
 library(tidyverse)
+```
 
+To begin my analysis, I had to grab the dataset from a CSV file on GitHub and store it in the variable breed_traits, trait_description, breed_rank_all. For this project, we will be focusing on the dataset breed_traits.
+
+```{r}
+breed_traits <- read_csv("C:/Users/Joshua/Downloads/breeds.csv")
+trait_description <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-02-01/trait_description.csv')
+breed_rank_all <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-02-01/breed_rank.csv')
 my_data_splits <- initial_split(breed_traits, prop = 0.5)
 
 exploratory_data <- training(my_data_splits)
 test_data <- testing(my_data_splits)
 ```
+
+For the sake of using pipes and other functions in this script, I loaded tidyverse. I then split my data into exploratory data and test_data. The purpose of the splitting data is so that we can create inferences about our total population (the exploratory data set) from the test data. However as I realized I wanted to combine all the dog breeds into three sets, it become unnecessary to develop inferences for this project
 
 The janitor package allows the names of the dog breeds to be read in an easier way for R studio.
 
@@ -83,9 +83,11 @@ breed_traits%>%
 
 My analysis ran into some issues collecting each of the breeds as variables and categorizing them into the right size category. The command that was meant to organize each of the breeds into sizes was written as.
 
-```{r}
- mutate(size = ifelse(breed%in%large,"large",ifelse(breed%in%medium,"medium","small")))%>%
-```
+"""
+
+mutate(size = ifelse(breed%in%large,"large",ifelse(breed%in%medium,"medium","small")))
+
+"""
 
 In this line of code, R will create a variable known as size and assign them into string categories such as "small", "medium", "large" that will be displayed on the jitter plot as part of the y axis. The mutate command works using the function ifelse. Ifelse will search the list of strings to see if they were listed under the variable of large and if not medium. If a breed in the dataset is not detected under either variable, it will default to being classified as small when organized in size. Due to this assumption I wouldnt have to print out a breed name if it was small (however I did so to ensure I collected every breed). It also meant that any string that did not match with a breed in the dataset would default to the small category. Problems arose from this function due to typos (including lack of pluralization or misnaming) I had printed out for the strings. As a result the initial jitter plot was skewed towards small and counted up to 142 out of the 195 breeds as small. However once I fixed this typo, I was able to create a coherent dataset.
 
